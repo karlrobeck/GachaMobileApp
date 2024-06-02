@@ -46,12 +46,11 @@ fun Greeting(name: String) {
         modifier = Modifier.
         fillMaxWidth().
         fillMaxHeight().
-        padding(all=12.dp).
-        border(width=2.dp,color = Color.White),
+        padding(all=12.dp),
     ) {
         Text(
             modifier = Modifier.padding(all=12.dp),
-            text = "Hello my name is $name"
+            text = "Hello my name is $name from group late night devs"
         )
     }
 }
