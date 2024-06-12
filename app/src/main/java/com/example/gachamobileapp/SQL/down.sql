@@ -1,0 +1,4 @@
+DROP TABLE User;
+DROP TABLE Card;
+DROP TABLE CardType;
+DROP TABLE Achievements;
