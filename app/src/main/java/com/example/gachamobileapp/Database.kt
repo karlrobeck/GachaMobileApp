@@ -22,7 +22,6 @@ class Database(context:Context,factory:SQLiteDatabase.CursorFactory?) : SQLiteOp
         val upSQL = bufferedReader.use { it.readText() }
         db?.execSQL(upSQL)
     }
-//ughh
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         val bufferedReader: BufferedReader = File("./SQL/down.sql").bufferedReader()
         val upSQL = bufferedReader.use { it.readText() }
