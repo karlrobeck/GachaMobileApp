@@ -44,6 +44,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.gachamobileapp.pages.Home
 import com.example.gachamobileapp.ui.theme.GachaMobileAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -56,9 +57,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainLayout {
-
-                    }
+                    MainLayout("Home")
                 }
             }
         }
@@ -67,8 +66,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainLayout(content: @Composable () -> Unit) {
-
+fun MainLayout(page:String) {
     var currentPage by remember { mutableStateOf("Home") };
     val navigationPages = LinkedHashMap<String,ImageVector>();
     navigationPages.put("Home",Icons.Filled.Home)
@@ -107,7 +105,9 @@ fun MainLayout(content: @Composable () -> Unit) {
                 navigationPages.forEach { (name, icon) ->
                     NavigationBarItem(
                         selected = name == currentPage,
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            currentPage = name;
+                        },
                         icon = { Icon(icon, contentDescription = name) },
                         label = { Text(text=name) })
                 }
@@ -119,8 +119,13 @@ fun MainLayout(content: @Composable () -> Unit) {
                 modifier = Modifier
                     .padding(innerPadding)
             ) {
-                content()
+            when(currentPage) {
+                "Home" -> Home()
+                "Achievements" -> {}
+                "Collections" -> {}
+                "Store" -> {}
             }
+        }
     }
 }
 
@@ -128,8 +133,6 @@ fun MainLayout(content: @Composable () -> Unit) {
 @Composable
 fun GreetingPreview() {
     GachaMobileAppTheme {
-        MainLayout {
-            Text(text = "Hello world")
-        }
+        MainLayout("Home")
     }
 }
