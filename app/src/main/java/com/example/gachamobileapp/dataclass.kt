@@ -4,14 +4,19 @@ import java.math.BigDecimal
 
 data class UserDataClass(
     val name: String, // Primary Key (TEXT)
-    val money: BigDecimal, // DECIMAL(10,2) NOT NULL
+    val money: Long, // DECIMAL(10,2) NOT NULL
     val image: String // TEXT NOT NULL
 ) {
     init {
         require(name.isNotEmpty()) { "Name cannot be empty" }
-        require(money >= BigDecimal.ZERO) { "Money cannot be negative" }
+        require(money >= 0) { "Money cannot be negative" }
+    }
+
+    fun getMoneyAsBigDecimal(): BigDecimal {
+        return BigDecimal(money).divide(BigDecimal(100))
     }
 }
+
 
 data class CardDataClass(
     val owner: String, // Foreign Key referencing User(name)
