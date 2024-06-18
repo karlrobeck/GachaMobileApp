@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -44,7 +46,14 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.gachamobileapp.pages.Home
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.gachamobileapp.pages.AchievementsPage
+import com.example.gachamobileapp.pages.CollectionsPage
+import com.example.gachamobileapp.pages.HomePage
+import com.example.gachamobileapp.pages.StorePage
 import com.example.gachamobileapp.ui.theme.GachaMobileAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,12 +61,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GachaMobileAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MainLayout("Home")
+                val navController = rememberNavController()
+                MainLayout(navController = navController) {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        NavHost(navController = navController, startDestination = "Home") {
+                            composable("Home") {
+                                HomePage(navController)
+                            }
+                            composable("Achievements") {
+                                AchievementsPage(navController = navController)
+                            }
+                            composable("Collections") {
+                                CollectionsPage(navController = navController)
+                            }
+                            composable("Store") {
+                                StorePage(navController = navController)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -66,7 +90,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainLayout(page:String) {
+fun MainLayout(navController: NavController,content:@Composable () -> Unit) {
     var currentPage by remember { mutableStateOf("Home") };
     val navigationPages = LinkedHashMap<String,ImageVector>();
     navigationPages.put("Home",Icons.Filled.Home)
@@ -107,6 +131,10 @@ fun MainLayout(page:String) {
                         selected = name == currentPage,
                         onClick = {
                             currentPage = name;
+                            navController.navigate(name) {
+                                launchSingleTop = true;
+                                restoreState = true;
+                            };
                         },
                         icon = { Icon(icon, contentDescription = name) },
                         label = { Text(text=name) })
@@ -118,21 +146,37 @@ fun MainLayout(page:String) {
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
             ) {
-            when(currentPage) {
-                "Home" -> Home()
-                "Achievements" -> {}
-                "Collections" -> {}
-                "Store" -> {}
-            }
+                content()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun PagePreview() {
     GachaMobileAppTheme {
-        MainLayout("Home")
+        val navController = rememberNavController()
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            NavHost(navController = navController, startDestination = "Home") {
+                composable("Home") {
+                    MainLayout(
+                        navController = navController
+                    ) {
+                        HomePage(
+                            navController = navController
+                        )
+                    }
+                }
+                composable("Achievements") {
+                    
+                }
+            }
+        }
     }
 }
