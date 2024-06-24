@@ -52,35 +52,35 @@ fun AchievementsPage(navController: NavController) {
             shape = MaterialTheme.shapes.medium
         )
 
-        TextHeaderAndImageHolder("NEGGA Achievements", listOf(
+        TextHeaderAndImageHolder("YOBADS", listOf(
             R.drawable.___10_,
             R.drawable.___11_,
             R.drawable.___12_,
             R.drawable.___13_
         ))
 
-        TextHeaderAndImageHolder("SKIBIDI Achievements", listOf(
+        TextHeaderAndImageHolder("LOVERS", listOf(
             R.drawable.___14_,
             R.drawable.___16_,
             R.drawable.___17_
         ))
 
-        TextHeaderAndImageHolder("GYAT Achievements", listOf(
+        TextHeaderAndImageHolder("NEGLIGENCE", listOf(
             R.drawable.___18_,
             R.drawable.___19_,
             R.drawable.___1_,
             R.drawable.___20_
         ))
 
-        TextHeaderAndImageHolder("RIZZ Achievements", listOf(
+        TextHeaderAndImageHolder("LIMITLESS", listOf(
             R.drawable.___22_,
             R.drawable.___23_,
             R.drawable.___24_,
             R.drawable.___25_,
-            R.drawable.___25_
+            R.drawable.___7_
         ))
 
-        TextHeaderAndImageHolder("FANUMTAX Achievements", listOf(
+        TextHeaderAndImageHolder("BADGER RANGERS", listOf(
             R.drawable.___26_,
             R.drawable.___28_,
             R.drawable.___29_,

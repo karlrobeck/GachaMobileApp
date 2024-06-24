@@ -173,4 +173,3 @@ fun StoreItem(imageRes: Int, label: String, onClick: () -> Unit) {
         )
     }
 }
-

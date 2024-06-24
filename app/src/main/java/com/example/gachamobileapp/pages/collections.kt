@@ -67,7 +67,8 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___11_,
                     R.drawable.___12_,
                     R.drawable.___13_
-                )
+                ),
+                labels = listOf("Card 1", "Card 2", "Card 3", "Card 4")
             )
             Cardrow(
                 images = listOf(
@@ -75,48 +76,45 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___16_,
                     R.drawable.___17_,
                     R.drawable.___23_
-                )
+                ),
+                labels = listOf("Card 5", "Card 6", "Card 7", "Card 8")
             )
-            Cardrow(
-                images = listOf(
-                    R.drawable.___26_,
-                    R.drawable.___28_,
-                    R.drawable.___29_,
-                    R.drawable.___30_
-                )
 
-            )
-            Cardrow(
-                images = listOf(
-                    R.drawable.___18_,
-                    R.drawable.___19_,
-                    R.drawable.___1_,
-                    R.drawable.___20_
-                )
-            )
             Cardrow(
                 images = listOf(
                     R.drawable.___22_,
-                    R.drawable.___23_,
+                    R.drawable.___28_,
                     R.drawable.___24_,
                     R.drawable.___25_
-                )
+                ),
+                labels = listOf("Card 9", "Card 10", "Card 11", "Card 12")
             )
+
             Cardrow(
                 images = listOf(
-                    R.drawable.___26_,
-                    R.drawable.___28_,
-                    R.drawable.___29_,
-                    R.drawable.___30_
-                )
+                    R.drawable.___2_,
+                    R.drawable.___31_,
+                    R.drawable.___30_,
+                    R.drawable.___3_
+                ),
+                labels = listOf("Card 13", "Card 14", "Card 15", "Card 16")
+            )
 
+            Cardrow(
+                images = listOf(
+                    R.drawable.___4_,
+                    R.drawable.___5_,
+                    R.drawable.___6_,
+                    R.drawable.___7_
+                ),
+                labels = listOf("Card 17", "Card 18", "Card 19", "Card 20")
             )
         }
     }
 }
 
 @Composable
-fun Cardrow(images: List<Int>) {
+fun Cardrow(images: List<Int>, labels: List<String>) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -125,7 +123,7 @@ fun Cardrow(images: List<Int>) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         images.forEachIndexed { index, image ->
-            Card(image = image, label = "Card ${index + 1}")
+            Card(image = image, label = labels.getOrNull(index) ?: "")
         }
     }
 }
