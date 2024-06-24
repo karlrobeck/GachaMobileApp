@@ -61,7 +61,7 @@ fun CollectionsPage(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Column(modifier = Modifier.fillMaxWidth()) {
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___10_,
                     R.drawable.___11_,
@@ -69,7 +69,7 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___13_
                 )
             )
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___14_,
                     R.drawable.___16_,
@@ -77,7 +77,7 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___23_
                 )
             )
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___26_,
                     R.drawable.___28_,
@@ -86,7 +86,7 @@ fun CollectionsPage(navController: NavController) {
                 )
 
             )
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___18_,
                     R.drawable.___19_,
@@ -94,7 +94,7 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___20_
                 )
             )
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___22_,
                     R.drawable.___23_,
@@ -102,7 +102,7 @@ fun CollectionsPage(navController: NavController) {
                     R.drawable.___25_
                 )
             )
-            ImageRow(
+            Cardrow(
                 images = listOf(
                     R.drawable.___26_,
                     R.drawable.___28_,
@@ -116,7 +116,7 @@ fun CollectionsPage(navController: NavController) {
 }
 
 @Composable
-fun ImageRow(images: List<Int>) {
+fun Cardrow(images: List<Int>) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -125,13 +125,13 @@ fun ImageRow(images: List<Int>) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         images.forEachIndexed { index, image ->
-            coltxtimg(image = image, label = "Card ${index + 1}")
+            Card(image = image, label = "Card ${index + 1}")
         }
     }
 }
 
 @Composable
-fun coltxtimg(image: Int, label: String) {
+fun Card(image: Int, label: String) {
     val painter = rememberImagePainter(image)
 
     Column(
